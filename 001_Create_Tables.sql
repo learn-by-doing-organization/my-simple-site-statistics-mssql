@@ -1,5 +1,5 @@
 -------------------- SCRIPT TO CHECK OF DbScriptMigrationSystem -------------------------------
-DECLARE @MigrationName AS VARCHAR(1000) = '001_ExampleScriptName'
+DECLARE @MigrationName AS VARCHAR(1000) = '001_Create_Tables'
 
 IF EXISTS(SELECT MigrationId FROM [DbScriptMigration] WHERE MigrationName = @MigrationName)
 BEGIN 
@@ -20,7 +20,7 @@ PRINT 'Insert record into [DbScriptMigration]!'
 DECLARE @PrerequisiteMigrationName AS VARCHAR(1000) = '000b_CreateUniqueCostraintForMigrationName'
 IF NOT EXISTS(SELECT MigrationId FROM [DbScriptMigration] WHERE MigrationName = @PrerequisiteMigrationName)
 BEGIN 
-    raiserror('YOU HAVET TO RUN SCRIPT %s ON THIS DB!!! STOP EXECUTION SCRIPT ', 11, 0, @PrerequisiteMigrationName)
+    raiserror('YOU HAVE TO RUN SCRIPT %s ON THIS DB!!! STOP EXECUTION SCRIPT ', 11, 0, @PrerequisiteMigrationName)
     SET NOEXEC ON
 END
 -------------------- END SCRIPT TO CHECK PREREQUISITES OF DbScriptMigrationSystem ---------------------------
