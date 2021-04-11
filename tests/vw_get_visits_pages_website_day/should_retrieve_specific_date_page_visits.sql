@@ -2,12 +2,12 @@ SET NOEXEC OFF
 BEGIN TRANSACTION;  
 
 DECLARE @randomDate DATE = NULL
-DECLARE @randomPage INT = 0
+DECLARE @randomPage BIGINT = 0
 DECLARE @randomWebSite INT = 0
 
 DECLARE @returnTable TABLE (
         [visit_date] DATE,
-        [visit_page] INT,
+        [visit_page] BIGINT,
         [visit_website] INT,
         [num_visits] BIGINT
     )
