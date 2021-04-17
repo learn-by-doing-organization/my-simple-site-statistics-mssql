@@ -7,7 +7,7 @@ DECLARE @randomWebSite INT = 0
 
 DECLARE @returnTable TABLE (
         [visit_date] DATE,
-        [visit_browser] BIGINT,
+        [visit_browser_id] BIGINT,
         [visit_website] INT,
         [num_visits] BIGINT
     )
@@ -42,10 +42,10 @@ SELECT @expectedNumVisit = COUNT(visits.id)
 --SELECT 'expectedNumVisit', @expectedNumVisit
 
 -- ACT
-INSERT INTO @returnTable ([visit_date],[visit_browser],[visit_website],[num_visits])
-SELECT [visit_date],[visit_browser],[visit_website],[num_visits]
+INSERT INTO @returnTable ([visit_date],[visit_browser_id],[visit_website],[num_visits])
+SELECT [visit_date],[visit_browser_id],[visit_website],[num_visits]
     FROM vw_visits_browsers_website_day
-    WHERE visit_browser = @randomBrowser
+    WHERE visit_browser_id = @randomBrowser
         AND visit_date = @randomDate
 
 SELECT @returnValue = SUM(num_visits) FROM @returnTable

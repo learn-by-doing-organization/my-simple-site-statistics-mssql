@@ -43,9 +43,9 @@ SELECT @expectedNumVisit = COUNT(visits.id)
 
 -- ACT
 INSERT INTO @returnTable ([visit_date],[visit_page],[visit_website],[num_visits])
-SELECT [visit_date],[visit_page],[visit_website],[num_visits]
+SELECT [visit_date],[visit_page_id],[visit_website],[num_visits]
     FROM vw_visits_pages_website_day
-    WHERE visit_page = @randomPage
+    WHERE visit_page_id = @randomPage
         AND visit_date = @randomDate
 
 SELECT @returnValue = num_visits FROM @returnTable

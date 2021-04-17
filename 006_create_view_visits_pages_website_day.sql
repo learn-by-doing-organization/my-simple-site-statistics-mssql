@@ -29,10 +29,10 @@ DECLARE @sqlString AS VARCHAR(MAX)
 
 SET @sqlString = 'CREATE OR ALTER VIEW vw_visits_pages_website_day
 AS
-SELECT CAST([date] AS DATE) AS visit_date, pages.id AS visit_page, pages.website_id AS visit_website, COUNT(CAST([date] AS DATE)) AS num_visits
+SELECT CAST([date] AS DATE) AS visit_date, pages.id AS visit_page_id, pages.uri AS visit_page_url, pages.website_id AS visit_website, COUNT(CAST([date] AS DATE)) AS num_visits
   FROM [accesses_visits] AS visits
 	INNER JOIN [accesses_pages] AS pages ON visits.page_id = pages.id
-	GROUP BY CAST(visits.[date] AS DATE), pages.id, pages.website_id '
+	GROUP BY CAST(visits.[date] AS DATE), pages.id, pages.uri, pages.website_id '
 EXEC (@sqlString)
 PRINT 'View [vw_visits_pages_website_day] created!'
 
